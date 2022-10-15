@@ -141,19 +141,19 @@ module elastico(ancho) {
     linear_extrude(10.5)
       polygon(concat(
           [for (t=[0:.1:1]) 
-            bezier2([-7.5,-25],[-6,-33],[0,-39],t)],
+            bezier2([-7.5-2,-25],[-8,-33],[0,-39],t)],
           [[0,-39+ancho*1.5]],
           [for (t=[1:-.1:0]) 
-            bezier2([-7.5+ancho,-25],[-5,-32],[0,-39+ancho*1.5],t)]
+            bezier2([-7.5-2+ancho,-25],[-6,-32],[0,-39+ancho*1.5],t)]
           ));        
       }  
   difference () {
     union(){
       translate([8,-6.5,0])
         cube([ancho,13,10.5]);
-      translate([-7.5,-25,0])
+      translate([-7.5-2,-25,0])
         cube([ancho,15,10.5]);
-      translate([-7.5,25-15,0])
+      translate([-7.5-2,25-15,0])
         cube([ancho,15,10.5]);
       cintas();
       mirror([0,1,0])
@@ -169,9 +169,9 @@ module elastico(ancho) {
 //rendija_fija();
 //rendija_movil();
 //translate([30,-6.5,4.8]) color("cyan") cubo();
-cubo();
+//cubo();
 //todo();
-//elastico(2);
+elastico(2);
 
 function bezier2(p0,p1,p2,t) =
   (1-t)^2*p0 + 2*t*(1-t)*p1 + t^2*p2;
